@@ -158,7 +158,14 @@ const App = () => {
               {/* We use index as the key instead, also, the src is now item.gifLink */}
               {gifList.map((item, index) => (
                 <div className="gif-item" key={index}>
-                  <img src={item.gifLink} />
+                  <iframe
+                    src={item?.gifLink}
+                    frameborder="0"
+                    allowtransparency="true"
+                    allow="encrypted-media"
+                    title="Spotify Player"
+                    style={{ height: "400px" }}
+                  />
                 </div>
               ))}
             </div>
@@ -233,7 +240,7 @@ const App = () => {
           {walletAddress && renderConnectedContainer()}
         </div>
       </div>
-      <div className="flex justify-center items-center absolute w-full bottom-0 left-0 pb-8">
+      {/* <div className="flex justify-center items-center absolute w-full bottom-0 left-0 pb-8">
         <img alt="Twitter Logo" className="twitter-logo" src={twitterLogo} />
         <a
           className="text-xs"
@@ -241,7 +248,7 @@ const App = () => {
           target="_blank"
           rel="noreferrer"
         >{`by @${JASON_TWITTER_HANDLE} with help from @${TWITTER_HANDLE}`}</a>
-      </div>
+      </div> */}
     </div>
   );
 };

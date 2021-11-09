@@ -27,7 +27,8 @@ const opts = {
 
 // Constants
 const TWITTER_HANDLE = "_buildspace";
-const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
+const JASON_TWITTER_HANDLE = "jasonscui";
+const TWITTER_LINK = `https://twitter.com/${JASON_TWITTER_HANDLE}`;
 
 const TEST_GIFS = [
   "https://i.giphy.com/media/eIG0HfouRQJQr1wBzz/giphy.webp",
@@ -112,7 +113,7 @@ const App = () => {
 
   const renderNotConnectedContainer = () => (
     <button
-      className="cta-button connect-wallet-button"
+      className="h-auto border-0 w-auto inline-block mx-auto px-5 py-2 rounded-lg cursor-pointer font-bold bg-gradient-to-r from-green-400 to-blue-500"
       onClick={connectWallet}
     >
       Connect to Wallet
@@ -136,23 +137,31 @@ const App = () => {
     // Otherwise, we're good! Account exists. User can submit GIFs.
     else {
       return (
-        <div className="connected-container">
-          <input
-            type="text"
-            placeholder="Enter gif link!"
-            value={inputValue}
-            onChange={onInputChange}
-          />
-          <button className="cta-button submit-gif-button" onClick={sendGif}>
-            Submit
-          </button>
-          <div className="gif-grid">
-            {/* We use index as the key instead, also, the src is now item.gifLink */}
-            {gifList.map((item, index) => (
-              <div className="gif-item" key={index}>
-                <img src={item.gifLink} />
-              </div>
-            ))}
+        <div className="">
+          <div className="">
+            <input
+              type="text"
+              placeholder="Enter gif link!"
+              value={inputValue}
+              onChange={onInputChange}
+              className=" py-1 px-1 border border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+            />
+            <button
+              className="ml-8 h-auto border-0 w-auto inline-block mx-auto px-5 py-2 rounded-lg cursor-pointer font-bold bg-gradient-to-r from-green-400 to-blue-500 hover:bg-red-100"
+              onClick={sendGif}
+            >
+              Submit
+            </button>
+          </div>
+          <div>
+            <div className="grid md:grid-cols-3 gap-2 my-8 mx-8 h-auto  ">
+              {/* We use index as the key instead, also, the src is now item.gifLink */}
+              {gifList.map((item, index) => (
+                <div className="gif-item" key={index}>
+                  <img src={item.gifLink} />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       );
@@ -212,26 +221,26 @@ const App = () => {
   }, [walletAddress]);
 
   return (
-    <div className="App">
-      <div className={walletAddress ? "authed-container" : "container"}>
-        <div className="header-container">
-          <p className="header">🖼 GIF Portal</p>
-          <p className="sub-text">
-            View your GIF collection in the metaverse ✨😉
-          </p>
+    <div className="flex flex-col min-h-screen mx-auto text-center bg-blue-100 font-mono text-grey">
+      <div>
+        <div className="text-5xl mb-4 mt-20">Solana Tunes </div>
+        <div className="mb-4">
+          Hear what folks are listening to in the metaverse ✨😉
+        </div>
+        <div className="flex-grow">
           {!walletAddress && renderNotConnectedContainer()}
           {/* We just need to add the inverse here! */}
           {walletAddress && renderConnectedContainer()}
         </div>
       </div>
-      <div className="footer-container">
+      <div className="flex justify-center items-center absolute w-full bottom-0 left-0 pb-8">
         <img alt="Twitter Logo" className="twitter-logo" src={twitterLogo} />
         <a
-          className="footer-text"
+          className="text-xs"
           href={TWITTER_LINK}
           target="_blank"
           rel="noreferrer"
-        >{`built on @${TWITTER_HANDLE}`}</a>
+        >{`by @${JASON_TWITTER_HANDLE} with help from @${TWITTER_HANDLE}`}</a>
       </div>
     </div>
   );
